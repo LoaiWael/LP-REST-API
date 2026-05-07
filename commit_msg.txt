@@ -1,0 +1,10 @@
+feat(validation): Add strict AJV schemas for core models
+
+Implement ajv and ajv-errors to enforce JSONSchemaType validations
+for the Skill, Contributor, Work, and Experience models.
+Bypass overly strict JSONSchemaType constraints on complex nested
+types and Date fields using targeted type assertions. Update
+tsconfig.json to enable esModuleInterop for compatibility with
+CommonJS validation packages.
+
+Co-Authored-By: Claude <noreply@anthropic.com>
