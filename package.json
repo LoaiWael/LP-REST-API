@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"tsc -w\" \"nodemon dist/app.js\"",
+    "schemas:openapi": "swagger-jsdoc -d src/doc/definition.yaml src/doc/paths/*.ts \"src/doc/!(definition).yaml\" -o src/schemas/openapi.json",
+    "schemas:types": "openapi-typescript src/schemas/openapi.json -o src/schemas/index.d.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,12 +25,18 @@
     "ajv": "^8.20.0",
     "ajv-errors": "^3.0.0",
     "express": "^5.2.1",
-    "helmet": "^8.1.0"
+    "express-openapi-validator": "^5.6.2",
+    "helmet": "^8.1.0",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
+    "@types/swagger-ui-express": "^4.1.8",
     "concurrently": "^9.2.1",
+    "copyfiles": "^2.4.1",
     "nodemon": "^3.1.14",
+    "openapi-typescript": "^7.13.0",
+    "swagger-jsdoc": "^6.2.8",
     "typescript": "^6.0.3"
   }
 }
