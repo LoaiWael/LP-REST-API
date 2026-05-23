@@ -1,0 +1,109 @@
+components:
+  schemas:
+    Work:
+      type: object
+      required:
+        - title
+        - quickDoc
+        - photoPrev
+        - creationDate
+        - doc
+        - technologies
+        - contributors
+        - src
+        - numOfImages
+        - images
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the work
+        title:
+          type: string
+          description: Title of the work
+        quickDoc:
+          type: string
+          description: Short documentation or description
+        photoPrev:
+          type: string
+          description: URL for the preview photo
+        creationDate:
+          type: string
+          description: Creation date of the work
+        doc:
+          type: string
+          description: Full documentation
+        technologies:
+          type: array
+          description: List of skills/technologies used
+          items:
+            $ref: '../doc/skills.yaml#/components/schemas/Skill'
+        contributors:
+          type: array
+          description: List of contributors
+          items:
+            $ref: '../doc/contributors.yaml#/components/schemas/Contributor'
+        src:
+          type: array
+          description: Source links
+          items:
+            type: string
+        numOfImages:
+          type: integer
+          description: Total number of images
+        images:
+          type: array
+          description: URLs for images
+          items:
+            type: string
+    WorkInput:
+      type: object
+      required:
+        - title
+        - quickDoc
+        - photoPrev
+        - creationDate
+        - doc
+        - technologies
+        - contributors
+        - src
+        - numOfImages
+        - images
+      properties:
+        title:
+          type: string
+          description: Title of the work
+        quickDoc:
+          type: string
+          description: Short documentation or description
+        photoPrev:
+          type: string
+          description: URL for the preview photo
+        creationDate:
+          type: string
+          description: Creation date of the work
+        doc:
+          type: string
+          description: Full documentation
+        technologies:
+          type: array
+          description: List of skills/technologies used
+          items:
+            $ref: '../doc/skills.yaml#/components/schemas/Skill'
+        contributors:
+          type: array
+          description: List of contributors
+          items:
+            $ref: '../doc/contributors.yaml#/components/schemas/Contributor'
+        src:
+          type: array
+          description: Source links
+          items:
+            type: string
+        numOfImages:
+          type: integer
+          description: Total number of images
+        images:
+          type: array
+          description: URLs for images
+          items:
+            type: string

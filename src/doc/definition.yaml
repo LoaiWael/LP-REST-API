@@ -1,0 +1,16 @@
+openapi: 3.0.0
+info:
+  title: LP REST API
+  version: 1.0.0
+  description: REST API for Portfolio including Skills, Experience, and My Work
+tags:
+  - name: Skills
+    description: Operations related to skills
+  - name: Experience
+    description: Operations related to experiences
+  - name: My Work
+    description: Operations related to my work and projects
+  - name: Contributors
+    description: Operations related to contributors
+servers:
+  - url: /api
