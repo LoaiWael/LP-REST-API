@@ -6,8 +6,10 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"tsc -w\" \"nodemon dist/app.js\"",
+    "schemas": "npm run schemas:openapi && npm run schemas:types",
     "schemas:openapi": "swagger-jsdoc -d src/doc/definition.yaml src/doc/paths/*.ts \"src/doc/!(definition).yaml\" -o src/schemas/openapi.json",
     "schemas:types": "openapi-typescript src/schemas/openapi.json -o src/schemas/index.d.ts",
+    "copyfiles": "copyfiles -u 1 \"src/schemas/*.json\" \"src/doc/**/*.yaml\" \"src/doc/*.yaml\" dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,8 +24,6 @@
   },
   "homepage": "https://github.com/LoaiWael/LP-Control-Panel#readme",
   "dependencies": {
-    "ajv": "^8.20.0",
-    "ajv-errors": "^3.0.0",
     "express": "^5.2.1",
     "express-openapi-validator": "^5.6.2",
     "helmet": "^8.1.0",
