@@ -1,20 +1,17 @@
 import { Router } from "express";
 const router = Router();
 router.get('/', (req, res) => {
-    // Get all experience role & Expand details by query params
-});
-router.get('/:id', (req, res) => {
-    // Get experience by id
+    // Get all contributors
 });
 // Admin
 router.post('/', (req, res) => {
-    // Add experience
+    // Add new contributor
 });
 router.put('/:id', (req, res) => {
-    // update experience
+    // Update contributor by id
 });
 router.delete('/:id', (req, res) => {
-    // Delete work by id
+    // Delete contributor by id
 });
 export default router;
-//# sourceMappingURL=experiences.js.map
+//# sourceMappingURL=contributors.js.map

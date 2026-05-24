@@ -1,0 +1,43 @@
+components:
+  schemas:
+    Contributor:
+      type: object
+      required:
+        - name
+        - position
+        - communication
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the contributor
+        name:
+          type: string
+          description: Name of the contributor
+        position:
+          type: string
+          description: Position or role
+        photo:
+          type: string
+          description: Optional photo URL
+        communication:
+          type: string
+          description: Communication link or details
+    ContributorInput:
+      type: object
+      required:
+        - name
+        - position
+        - communication
+      properties:
+        name:
+          type: string
+          description: Name of the contributor
+        position:
+          type: string
+          description: Position or role
+        photo:
+          type: string
+          description: Optional photo URL
+        communication:
+          type: string
+          description: Communication link or details

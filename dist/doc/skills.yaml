@@ -1,0 +1,36 @@
+components:
+  schemas:
+    Skill:
+      type: object
+      required:
+        - id
+        - title
+        - icon
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the skill
+        title:
+          type: string
+          description: Name of the skill
+        icon:
+          type: string
+          description: Icon URL or identifier for the skill
+        techUsage:
+          type: string
+          description: Optional technology usage details
+    SkillInput:
+      type: object
+      required:
+        - title
+        - icon
+      properties:
+        title:
+          type: string
+          description: Name of the skill
+        icon:
+          type: string
+          description: Icon URL or identifier for the skill
+        techUsage:
+          type: string
+          description: Optional technology usage details

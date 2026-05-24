@@ -1,0 +1,1 @@
+{"version":3,"file":"error.js","sourceRoot":"","sources":["../../src/middlewares/error.ts"],"names":[],"mappings":"AAGA,eAAe,CAAC,GAAQ,EAAE,GAAY,EAAE,GAAuB,EAAE,GAAiB,EAAE,EAAE;IACpF,GAAG,CAAC,MAAM,CAAC,GAAG,CAAC,MAAM,IAAI,GAAG,CAAC,CAAC,IAAI,CAAC,EAAE,OAAO,EAAE,GAAG,CAAC,OAAO,IAAI,uBAAuB,EAAE,CAAC,CAAC;AAC1F,CAAC,CAAA"}

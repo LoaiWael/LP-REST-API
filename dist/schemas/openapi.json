@@ -1,0 +1,1187 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "LP REST API",
+    "version": "1.0.0",
+    "description": "REST API for Portfolio including Skills, Experience, and My Work"
+  },
+  "tags": [
+    {
+      "name": "Skills",
+      "description": "Operations related to skills"
+    },
+    {
+      "name": "Experience",
+      "description": "Operations related to experiences"
+    },
+    {
+      "name": "My Work",
+      "description": "Operations related to my work and projects"
+    },
+    {
+      "name": "Contributors",
+      "description": "Operations related to contributors"
+    }
+  ],
+  "servers": [
+    {
+      "url": "/api"
+    }
+  ],
+  "paths": {
+    "/contributor": {
+      "get": {
+        "summary": "Get all contributors",
+        "tags": [
+          "Contributors"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of contributors",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "../doc/contributors.yaml#/components/schemas/Contributor"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add new contributor",
+        "tags": [
+          "Contributors"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../doc/contributors.yaml#/components/schemas/ContributorInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "$ref": "../doc/error.yaml#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "../doc/error.yaml#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "../doc/error.yaml#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/contributor/{id}": {
+      "put": {
+        "summary": "Update contributor by ID",
+        "tags": [
+          "Contributors"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../doc/contributors.yaml#/components/schemas/ContributorInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../doc/contributors.yaml#/components/schemas/Contributor"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "../doc/error.yaml#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "../doc/error.yaml#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "../doc/error.yaml#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "../doc/error.yaml#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete contributor by ID",
+        "tags": [
+          "Contributors"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted successfully"
+          },
+          "401": {
+            "$ref": "../doc/error.yaml#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "../doc/error.yaml#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "../doc/error.yaml#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/experience": {
+      "get": {
+        "summary": "Get all experiences",
+        "tags": [
+          "Experience"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "expand",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Expand details by query params"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of experiences",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "../doc/experiences.yaml#/components/schemas/Experience"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add experience",
+        "tags": [
+          "Experience"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../doc/experiences.yaml#/components/schemas/ExperienceInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "$ref": "../doc/error.yaml#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "../doc/error.yaml#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "../doc/error.yaml#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/experience/{id}": {
+      "get": {
+        "summary": "Get experience by ID",
+        "tags": [
+          "Experience"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Experience details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../doc/experiences.yaml#/components/schemas/Experience"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "../doc/error.yaml#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update experience",
+        "tags": [
+          "Experience"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../doc/experiences.yaml#/components/schemas/ExperienceInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../doc/experiences.yaml#/components/schemas/Experience"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "../doc/error.yaml#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "../doc/error.yaml#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "../doc/error.yaml#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "../doc/error.yaml#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete experience by ID",
+        "tags": [
+          "Experience"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted successfully"
+          },
+          "401": {
+            "$ref": "../doc/error.yaml#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "../doc/error.yaml#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "../doc/error.yaml#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/my-work": {
+      "get": {
+        "summary": "Get all my work",
+        "tags": [
+          "My Work"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of my work",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "../doc/myWork.yaml#/components/schemas/Work"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/my-work/websites": {
+      "get": {
+        "summary": "Get all my websites work",
+        "tags": [
+          "My Work"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of websites",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "../doc/myWork.yaml#/components/schemas/Work"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/my-work/open-source": {
+      "get": {
+        "summary": "Get all my open-source contributions",
+        "tags": [
+          "My Work"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of open-source contributions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "../doc/myWork.yaml#/components/schemas/Work"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/my-work/ui-ux": {
+      "get": {
+        "summary": "Get all my UI/UX designs",
+        "tags": [
+          "My Work"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of UI/UX designs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "../doc/myWork.yaml#/components/schemas/Work"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/my-work/3d": {
+      "get": {
+        "summary": "Get all my 3D designs",
+        "tags": [
+          "My Work"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of 3D designs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "../doc/myWork.yaml#/components/schemas/Work"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/my-work/{id}": {
+      "get": {
+        "summary": "Get work details by ID",
+        "tags": [
+          "My Work"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Work details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../doc/myWork.yaml#/components/schemas/Work"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "../doc/error.yaml#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update work details",
+        "tags": [
+          "My Work"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../doc/myWork.yaml#/components/schemas/WorkInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../doc/myWork.yaml#/components/schemas/Work"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "../doc/error.yaml#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "../doc/error.yaml#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "../doc/error.yaml#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "../doc/error.yaml#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete work by ID",
+        "tags": [
+          "My Work"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted successfully"
+          },
+          "401": {
+            "$ref": "../doc/error.yaml#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "../doc/error.yaml#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "../doc/error.yaml#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/skill": {
+      "get": {
+        "summary": "Get all skills",
+        "tags": [
+          "Skills"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of skills",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "../doc/skills.yaml#/components/schemas/Skill"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a new skill",
+        "tags": [
+          "Skills"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../doc/skills.yaml#/components/schemas/SkillInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "$ref": "../doc/error.yaml#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "../doc/error.yaml#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "../doc/error.yaml#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/skill/frontend": {
+      "get": {
+        "summary": "Get frontend skills",
+        "tags": [
+          "Skills"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of frontend skills",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "../doc/skills.yaml#/components/schemas/Skill"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/skill/backend": {
+      "get": {
+        "summary": "Get backend skills",
+        "tags": [
+          "Skills"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of backend skills",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "../doc/skills.yaml#/components/schemas/Skill"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/skill/ui-ux": {
+      "get": {
+        "summary": "Get UI/UX skills",
+        "tags": [
+          "Skills"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of UI/UX skills",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "../doc/skills.yaml#/components/schemas/Skill"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/skill/{id}": {
+      "delete": {
+        "summary": "Delete skill by ID",
+        "tags": [
+          "Skills"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted successfully"
+          },
+          "401": {
+            "$ref": "../doc/error.yaml#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "../doc/error.yaml#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "../doc/error.yaml#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Contributor": {
+        "type": "object",
+        "required": [
+          "name",
+          "position",
+          "communication"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the contributor"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the contributor"
+          },
+          "position": {
+            "type": "string",
+            "description": "Position or role"
+          },
+          "photo": {
+            "type": "string",
+            "description": "Optional photo URL"
+          },
+          "communication": {
+            "type": "string",
+            "description": "Communication link or details"
+          }
+        }
+      },
+      "ContributorInput": {
+        "type": "object",
+        "required": [
+          "name",
+          "position",
+          "communication"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the contributor"
+          },
+          "position": {
+            "type": "string",
+            "description": "Position or role"
+          },
+          "photo": {
+            "type": "string",
+            "description": "Optional photo URL"
+          },
+          "communication": {
+            "type": "string",
+            "description": "Communication link or details"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "Experience": {
+        "type": "object",
+        "required": [
+          "role",
+          "orgName",
+          "orgLogoUrl",
+          "startDate",
+          "endDate",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the experience"
+          },
+          "role": {
+            "type": "string",
+            "description": "Role or job title"
+          },
+          "orgName": {
+            "type": "string",
+            "description": "Name of the organization"
+          },
+          "orgLogoUrl": {
+            "type": "string",
+            "description": "URL to the organization's logo"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start date of the experience"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "End date of the experience"
+          },
+          "description": {
+            "type": "string",
+            "description": "Details of the experience"
+          }
+        }
+      },
+      "ExperienceInput": {
+        "type": "object",
+        "required": [
+          "role",
+          "orgName",
+          "orgLogoUrl",
+          "startDate",
+          "endDate",
+          "description"
+        ],
+        "properties": {
+          "role": {
+            "type": "string",
+            "description": "Role or job title"
+          },
+          "orgName": {
+            "type": "string",
+            "description": "Name of the organization"
+          },
+          "orgLogoUrl": {
+            "type": "string",
+            "description": "URL to the organization's logo"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start date of the experience"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "End date of the experience"
+          },
+          "description": {
+            "type": "string",
+            "description": "Details of the experience"
+          }
+        }
+      },
+      "Work": {
+        "type": "object",
+        "required": [
+          "title",
+          "quickDoc",
+          "photoPrev",
+          "creationDate",
+          "doc",
+          "technologies",
+          "contributors",
+          "src",
+          "numOfImages",
+          "images"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the work"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the work"
+          },
+          "quickDoc": {
+            "type": "string",
+            "description": "Short documentation or description"
+          },
+          "photoPrev": {
+            "type": "string",
+            "description": "URL for the preview photo"
+          },
+          "creationDate": {
+            "type": "string",
+            "description": "Creation date of the work"
+          },
+          "doc": {
+            "type": "string",
+            "description": "Full documentation"
+          },
+          "technologies": {
+            "type": "array",
+            "description": "List of skills/technologies used",
+            "items": {
+              "$ref": "../doc/skills.yaml#/components/schemas/Skill"
+            }
+          },
+          "contributors": {
+            "type": "array",
+            "description": "List of contributors",
+            "items": {
+              "$ref": "../doc/contributors.yaml#/components/schemas/Contributor"
+            }
+          },
+          "src": {
+            "type": "array",
+            "description": "Source links",
+            "items": {
+              "type": "string"
+            }
+          },
+          "numOfImages": {
+            "type": "integer",
+            "description": "Total number of images"
+          },
+          "images": {
+            "type": "array",
+            "description": "URLs for images",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "WorkInput": {
+        "type": "object",
+        "required": [
+          "title",
+          "quickDoc",
+          "photoPrev",
+          "creationDate",
+          "doc",
+          "technologies",
+          "contributors",
+          "src",
+          "numOfImages",
+          "images"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title of the work"
+          },
+          "quickDoc": {
+            "type": "string",
+            "description": "Short documentation or description"
+          },
+          "photoPrev": {
+            "type": "string",
+            "description": "URL for the preview photo"
+          },
+          "creationDate": {
+            "type": "string",
+            "description": "Creation date of the work"
+          },
+          "doc": {
+            "type": "string",
+            "description": "Full documentation"
+          },
+          "technologies": {
+            "type": "array",
+            "description": "List of skills/technologies used",
+            "items": {
+              "$ref": "../doc/skills.yaml#/components/schemas/Skill"
+            }
+          },
+          "contributors": {
+            "type": "array",
+            "description": "List of contributors",
+            "items": {
+              "$ref": "../doc/contributors.yaml#/components/schemas/Contributor"
+            }
+          },
+          "src": {
+            "type": "array",
+            "description": "Source links",
+            "items": {
+              "type": "string"
+            }
+          },
+          "numOfImages": {
+            "type": "integer",
+            "description": "Total number of images"
+          },
+          "images": {
+            "type": "array",
+            "description": "URLs for images",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Skill": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "icon"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the skill"
+          },
+          "title": {
+            "type": "string",
+            "description": "Name of the skill"
+          },
+          "icon": {
+            "type": "string",
+            "description": "Icon URL or identifier for the skill"
+          },
+          "techUsage": {
+            "type": "string",
+            "description": "Optional technology usage details"
+          }
+        }
+      },
+      "SkillInput": {
+        "type": "object",
+        "required": [
+          "title",
+          "icon"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Name of the skill"
+          },
+          "icon": {
+            "type": "string",
+            "description": "Icon URL or identifier for the skill"
+          },
+          "techUsage": {
+            "type": "string",
+            "description": "Optional technology usage details"
+          }
+        }
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "Forbidden",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Not Found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "InternalServerError": {
+        "description": "Internal Server Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    }
+  }
+}

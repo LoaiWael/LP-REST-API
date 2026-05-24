@@ -1,1 +1,1 @@
-{"version":3,"file":"logging.d.ts","sourceRoot":"","sources":["../../src/middlewares/logging.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,OAAO,EAAE,QAAQ,EAAE,YAAY,EAAE,MAAM,SAAS,CAAA;yBAE9C,KAAK,OAAO,EAAE,KAAK,QAAQ,EAAE,KAAK,YAAY;AAA9D,wBAEC"}
+{"version":3,"file":"logging.d.ts","sourceRoot":"","sources":["../../src/middlewares/logging.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAE,OAAO,EAAE,QAAQ,EAAE,YAAY,EAAE,MAAM,SAAS,CAAA;yBAE9C,KAAK,OAAO,EAAE,KAAK,QAAQ,EAAE,KAAK,YAAY;AAA9D,wBAEC"}
