@@ -2,10 +2,10 @@
   "name": "lp-control-panel",
   "version": "1.0.0",
   "description": "My portfolio Back-End APIs",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"tsc -w\" \"nodemon dist/app.js\"",
+    "dev": "concurrently \"tsc -w\" \"nodemon --env-file=.env.local dist/server.js\"",
     "schemas": "npm run schemas:openapi && npm run schemas:types",
     "schemas:openapi": "swagger-jsdoc -d src/doc/definition.yaml src/doc/paths/*.ts \"src/doc/!(definition).yaml\" -o src/schemas/openapi.json",
     "schemas:types": "openapi-typescript src/schemas/openapi.json -o src/schemas/index.d.ts",
@@ -24,12 +24,18 @@
   },
   "homepage": "https://github.com/LoaiWael/LP-Control-Panel#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
     "express": "^5.2.1",
+    "express-mongo-sanitize": "^2.2.0",
     "express-openapi-validator": "^5.6.2",
     "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.7.3",
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.10",
     "@types/express": "^5.0.6",
     "@types/swagger-ui-express": "^4.1.8",
     "concurrently": "^9.2.1",
