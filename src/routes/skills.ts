@@ -24,6 +24,10 @@ router.post('/', (req, res) => {
   // Add a new skill
 })
 
+router.put('/:id', (req, res) => {
+  // Update skill by id
+})
+
 router.delete('/:id', (req, res) => {
   // Delete skill by id
 })

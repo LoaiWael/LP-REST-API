@@ -14,7 +14,21 @@ const __dirname = path.dirname(__filename);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
-app.use(ExpressMongoSanitize());
+app.use((req, res, next) => {
+  if (req.body) ExpressMongoSanitize.sanitize(req.body);
+  if (req.params) ExpressMongoSanitize.sanitize(req.params);
+  if (req.query) ExpressMongoSanitize.sanitize(req.query);
+  next();
+});
+
+process.on('uncaughtException', exception => {
+  console.log('Un caught exception')
+  process.exit(1)
+});
+process.on('unhandledRejection', exception => {
+  console.log('Unhandled rejected promise')
+  process.exit(1)
+});
 
 app.use(openApivalidator);
 app.use('/api/skill', skillsRoutes);

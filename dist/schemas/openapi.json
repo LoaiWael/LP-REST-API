@@ -64,7 +64,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "../doc/contributors.yaml#/components/schemas/ContributorInput"
+                "$ref": "../doc/contributors.yaml#/components/schemas/ContributorPost"
               }
             }
           }
@@ -109,7 +109,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "../doc/contributors.yaml#/components/schemas/ContributorInput"
+                "$ref": "../doc/contributors.yaml#/components/schemas/ContributorPut"
               }
             }
           }
@@ -222,7 +222,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "../doc/experiences.yaml#/components/schemas/ExperienceInput"
+                "$ref": "../doc/experiences.yaml#/components/schemas/ExperiencePost"
               }
             }
           }
@@ -301,7 +301,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "../doc/experiences.yaml#/components/schemas/ExperienceInput"
+                "$ref": "../doc/experiences.yaml#/components/schemas/ExperiencePut"
               }
             }
           }
@@ -387,6 +387,39 @@
                 }
               }
             }
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new work",
+        "tags": [
+          "My Work"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../doc/myWork.yaml#/components/schemas/WorkPost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "$ref": "../doc/error.yaml#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "../doc/error.yaml#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "../doc/error.yaml#/components/responses/Forbidden"
           },
           "500": {
             "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
@@ -553,7 +586,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "../doc/myWork.yaml#/components/schemas/WorkInput"
+                "$ref": "../doc/myWork.yaml#/components/schemas/WorkPut"
               }
             }
           }
@@ -655,7 +688,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "../doc/skills.yaml#/components/schemas/SkillInput"
+                "$ref": "../doc/skills.yaml#/components/schemas/SkillPost"
               }
             }
           }
@@ -758,6 +791,59 @@
       }
     },
     "/skill/{id}": {
+      "put": {
+        "summary": "Update skill by ID",
+        "tags": [
+          "Skills"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../doc/skills.yaml#/components/schemas/SkillPut"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../doc/skills.yaml#/components/schemas/Skill"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "../doc/error.yaml#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "../doc/error.yaml#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "../doc/error.yaml#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "../doc/error.yaml#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "../doc/error.yaml#/components/responses/InternalServerError"
+          }
+        }
+      },
       "delete": {
         "summary": "Delete skill by ID",
         "tags": [
@@ -825,13 +911,34 @@
           }
         }
       },
-      "ContributorInput": {
+      "ContributorPost": {
         "type": "object",
         "required": [
           "name",
           "position",
           "communication"
         ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the contributor"
+          },
+          "position": {
+            "type": "string",
+            "description": "Position or role"
+          },
+          "photo": {
+            "type": "string",
+            "description": "Optional photo URL"
+          },
+          "communication": {
+            "type": "string",
+            "description": "Communication link or details"
+          }
+        }
+      },
+      "ContributorPut": {
+        "type": "object",
         "properties": {
           "name": {
             "type": "string",
@@ -902,7 +1009,7 @@
           }
         }
       },
-      "ExperienceInput": {
+      "ExperiencePost": {
         "type": "object",
         "required": [
           "role",
@@ -941,11 +1048,43 @@
           }
         }
       },
+      "ExperiencePut": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string",
+            "description": "Role or job title"
+          },
+          "orgName": {
+            "type": "string",
+            "description": "Name of the organization"
+          },
+          "orgLogoUrl": {
+            "type": "string",
+            "description": "URL to the organization's logo"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start date of the experience"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "End date of the experience"
+          },
+          "description": {
+            "type": "string",
+            "description": "Details of the experience"
+          }
+        }
+      },
       "Work": {
         "type": "object",
         "required": [
           "title",
           "quickDoc",
+          "category",
           "photoPrev",
           "creationDate",
           "doc",
@@ -967,6 +1106,16 @@
           "quickDoc": {
             "type": "string",
             "description": "Short documentation or description"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "websites",
+              "open-source",
+              "ui-ux",
+              "3d"
+            ],
+            "description": "Category of the work"
           },
           "photoPrev": {
             "type": "string",
@@ -1014,11 +1163,12 @@
           }
         }
       },
-      "WorkInput": {
+      "WorkPost": {
         "type": "object",
         "required": [
           "title",
           "quickDoc",
+          "category",
           "photoPrev",
           "creationDate",
           "doc",
@@ -1036,6 +1186,83 @@
           "quickDoc": {
             "type": "string",
             "description": "Short documentation or description"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "websites",
+              "open-source",
+              "ui-ux",
+              "3d"
+            ],
+            "description": "Category of the work"
+          },
+          "photoPrev": {
+            "type": "string",
+            "description": "URL for the preview photo"
+          },
+          "creationDate": {
+            "type": "string",
+            "description": "Creation date of the work"
+          },
+          "doc": {
+            "type": "string",
+            "description": "Full documentation"
+          },
+          "technologies": {
+            "type": "array",
+            "description": "List of skills/technologies used",
+            "items": {
+              "$ref": "../doc/skills.yaml#/components/schemas/Skill"
+            }
+          },
+          "contributors": {
+            "type": "array",
+            "description": "List of contributors",
+            "items": {
+              "$ref": "../doc/contributors.yaml#/components/schemas/Contributor"
+            }
+          },
+          "src": {
+            "type": "array",
+            "description": "Source links",
+            "items": {
+              "type": "string"
+            }
+          },
+          "numOfImages": {
+            "type": "integer",
+            "description": "Total number of images"
+          },
+          "images": {
+            "type": "array",
+            "description": "URLs for images",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "WorkPut": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title of the work"
+          },
+          "quickDoc": {
+            "type": "string",
+            "description": "Short documentation or description"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "websites",
+              "open-source",
+              "ui-ux",
+              "3d"
+            ],
+            "description": "Category of the work"
           },
           "photoPrev": {
             "type": "string",
@@ -1109,12 +1336,29 @@
           }
         }
       },
-      "SkillInput": {
+      "SkillPost": {
         "type": "object",
         "required": [
           "title",
           "icon"
         ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Name of the skill"
+          },
+          "icon": {
+            "type": "string",
+            "description": "Icon URL or identifier for the skill"
+          },
+          "techUsage": {
+            "type": "string",
+            "description": "Optional technology usage details"
+          }
+        }
+      },
+      "SkillPut": {
+        "type": "object",
         "properties": {
           "title": {
             "type": "string",

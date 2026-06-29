@@ -28,6 +28,10 @@ router.get('/:id', (req, res) => {
 
 // Admin
 
+router.post('/', (req, res) => {
+  // create a new work
+})
+
 router.put('/:id', (req, res) => {
   // Update work details
 })

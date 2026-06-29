@@ -44,7 +44,7 @@ export interface paths {
             };
             requestBody: {
                 content: {
-                    "application/json": components["schemas"]["ContributorInput"];
+                    "application/json": components["schemas"]["ContributorPost"];
                 };
             };
             responses: {
@@ -87,7 +87,7 @@ export interface paths {
             };
             requestBody: {
                 content: {
-                    "application/json": components["schemas"]["ContributorInput"];
+                    "application/json": components["schemas"]["ContributorPut"];
                 };
             };
             responses: {
@@ -181,7 +181,7 @@ export interface paths {
             };
             requestBody: {
                 content: {
-                    "application/json": components["schemas"]["ExperienceInput"];
+                    "application/json": components["schemas"]["ExperiencePost"];
                 };
             };
             responses: {
@@ -248,7 +248,7 @@ export interface paths {
             };
             requestBody: {
                 content: {
-                    "application/json": components["schemas"]["ExperienceInput"];
+                    "application/json": components["schemas"]["ExperiencePut"];
                 };
             };
             responses: {
@@ -329,7 +329,33 @@ export interface paths {
             };
         };
         put?: never;
-        post?: never;
+        /** Create a new work */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["schemas-WorkPost"];
+                };
+            };
+            responses: {
+                /** @description Created */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                400: components["responses"]["BadRequest"];
+                401: components["responses"]["Unauthorized"];
+                403: components["responses"]["Forbidden"];
+                500: components["responses"]["InternalServerError"];
+            };
+        };
         delete?: never;
         options?: never;
         head?: never;
@@ -528,7 +554,7 @@ export interface paths {
             };
             requestBody: {
                 content: {
-                    "application/json": components["schemas"]["schemas-WorkInput"];
+                    "application/json": components["schemas"]["schemas-WorkPut"];
                 };
             };
             responses: {
@@ -619,7 +645,7 @@ export interface paths {
             };
             requestBody: {
                 content: {
-                    "application/json": components["schemas"]["SkillInput"];
+                    "application/json": components["schemas"]["SkillPost"];
                 };
             };
             responses: {
@@ -761,7 +787,38 @@ export interface paths {
             cookie?: never;
         };
         get?: never;
-        put?: never;
+        /** Update skill by ID */
+        put: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["SkillPut"];
+                };
+            };
+            responses: {
+                /** @description Updated successfully */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["Skill"];
+                    };
+                };
+                400: components["responses"]["BadRequest"];
+                401: components["responses"]["Unauthorized"];
+                403: components["responses"]["Forbidden"];
+                404: components["responses"]["NotFound"];
+                500: components["responses"]["InternalServerError"];
+            };
+        };
         post?: never;
         /** Delete skill by ID */
         delete: {
@@ -809,7 +866,7 @@ export interface components {
             /** @description Communication link or details */
             communication: string;
         };
-        ContributorInput: {
+        ContributorPost: {
             /** @description Name of the contributor */
             name: string;
             /** @description Position or role */
@@ -818,6 +875,16 @@ export interface components {
             photo?: string;
             /** @description Communication link or details */
             communication: string;
+        };
+        ContributorPut: {
+            /** @description Name of the contributor */
+            name?: string;
+            /** @description Position or role */
+            position?: string;
+            /** @description Optional photo URL */
+            photo?: string;
+            /** @description Communication link or details */
+            communication?: string;
         };
         Error: {
             message?: string;
@@ -844,7 +911,7 @@ export interface components {
             /** @description Details of the experience */
             description: string;
         };
-        ExperienceInput: {
+        ExperiencePost: {
             /** @description Role or job title */
             role: string;
             /** @description Name of the organization */
@@ -864,6 +931,26 @@ export interface components {
             /** @description Details of the experience */
             description: string;
         };
+        ExperiencePut: {
+            /** @description Role or job title */
+            role?: string;
+            /** @description Name of the organization */
+            orgName?: string;
+            /** @description URL to the organization's logo */
+            orgLogoUrl?: string;
+            /**
+             * Format: date-time
+             * @description Start date of the experience
+             */
+            startDate?: string;
+            /**
+             * Format: date-time
+             * @description End date of the experience
+             */
+            endDate?: string;
+            /** @description Details of the experience */
+            description?: string;
+        };
         Work: {
             /** @description Unique identifier for the work */
             id?: string;
@@ -871,6 +958,11 @@ export interface components {
             title: string;
             /** @description Short documentation or description */
             quickDoc: string;
+            /**
+             * @description Category of the work
+             * @enum {string}
+             */
+            category: "websites" | "open-source" | "ui-ux" | "3d";
             /** @description URL for the preview photo */
             photoPrev: string;
             /** @description Creation date of the work */
@@ -888,11 +980,16 @@ export interface components {
             /** @description URLs for images */
             images: string[];
         };
-        WorkInput: {
+        WorkPost: {
             /** @description Title of the work */
             title: string;
             /** @description Short documentation or description */
             quickDoc: string;
+            /**
+             * @description Category of the work
+             * @enum {string}
+             */
+            category: "websites" | "open-source" | "ui-ux" | "3d";
             /** @description URL for the preview photo */
             photoPrev: string;
             /** @description Creation date of the work */
@@ -909,6 +1006,33 @@ export interface components {
             numOfImages: number;
             /** @description URLs for images */
             images: string[];
+        };
+        WorkPut: {
+            /** @description Title of the work */
+            title?: string;
+            /** @description Short documentation or description */
+            quickDoc?: string;
+            /**
+             * @description Category of the work
+             * @enum {string}
+             */
+            category?: "websites" | "open-source" | "ui-ux" | "3d";
+            /** @description URL for the preview photo */
+            photoPrev?: string;
+            /** @description Creation date of the work */
+            creationDate?: string;
+            /** @description Full documentation */
+            doc?: string;
+            /** @description List of skills/technologies used */
+            technologies?: components["schemas"]["Skill"][];
+            /** @description List of contributors */
+            contributors?: components["schemas"]["Contributor"][];
+            /** @description Source links */
+            src?: string[];
+            /** @description Total number of images */
+            numOfImages?: number;
+            /** @description URLs for images */
+            images?: string[];
         };
         Skill: {
             /** @description Unique identifier for the skill */
@@ -920,11 +1044,19 @@ export interface components {
             /** @description Optional technology usage details */
             techUsage?: string;
         };
-        SkillInput: {
+        SkillPost: {
             /** @description Name of the skill */
             title: string;
             /** @description Icon URL or identifier for the skill */
             icon: string;
+            /** @description Optional technology usage details */
+            techUsage?: string;
+        };
+        SkillPut: {
+            /** @description Name of the skill */
+            title?: string;
+            /** @description Icon URL or identifier for the skill */
+            icon?: string;
             /** @description Optional technology usage details */
             techUsage?: string;
         };
@@ -935,6 +1067,11 @@ export interface components {
             title: string;
             /** @description Short documentation or description */
             quickDoc: string;
+            /**
+             * @description Category of the work
+             * @enum {string}
+             */
+            category: "websites" | "open-source" | "ui-ux" | "3d";
             /** @description URL for the preview photo */
             photoPrev: string;
             /** @description Creation date of the work */
@@ -952,11 +1089,16 @@ export interface components {
             /** @description URLs for images */
             images: string[];
         };
-        "schemas-WorkInput": {
+        "schemas-WorkPost": {
             /** @description Title of the work */
             title: string;
             /** @description Short documentation or description */
             quickDoc: string;
+            /**
+             * @description Category of the work
+             * @enum {string}
+             */
+            category: "websites" | "open-source" | "ui-ux" | "3d";
             /** @description URL for the preview photo */
             photoPrev: string;
             /** @description Creation date of the work */
@@ -973,6 +1115,33 @@ export interface components {
             numOfImages: number;
             /** @description URLs for images */
             images: string[];
+        };
+        "schemas-WorkPut": {
+            /** @description Title of the work */
+            title?: string;
+            /** @description Short documentation or description */
+            quickDoc?: string;
+            /**
+             * @description Category of the work
+             * @enum {string}
+             */
+            category?: "websites" | "open-source" | "ui-ux" | "3d";
+            /** @description URL for the preview photo */
+            photoPrev?: string;
+            /** @description Creation date of the work */
+            creationDate?: string;
+            /** @description Full documentation */
+            doc?: string;
+            /** @description List of skills/technologies used */
+            technologies?: components["schemas"]["Skill"][];
+            /** @description List of contributors */
+            contributors?: components["schemas"]["Contributor"][];
+            /** @description Source links */
+            src?: string[];
+            /** @description Total number of images */
+            numOfImages?: number;
+            /** @description URLs for images */
+            images?: string[];
         };
     };
     responses: {

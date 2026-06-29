@@ -19,6 +19,9 @@ router.get('/:id', (req, res) => {
     // Get work details by id
 });
 // Admin
+router.post('/', (req, res) => {
+    // create a new work
+});
 router.put('/:id', (req, res) => {
     // Update work details
 });

@@ -26,7 +26,7 @@ export {};
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '../doc/contributors.yaml#/components/schemas/ContributorInput'
+ *             $ref: '../doc/contributors.yaml#/components/schemas/ContributorPost'
  *     responses:
  *       '201':
  *         description: Created
@@ -54,7 +54,7 @@ export {};
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '../doc/contributors.yaml#/components/schemas/ContributorInput'
+ *             $ref: '../doc/contributors.yaml#/components/schemas/ContributorPut'
  *     responses:
  *       '200':
  *         description: Updated successfully

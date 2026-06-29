@@ -33,7 +33,7 @@ components:
         description:
           type: string
           description: Details of the experience
-    ExperienceInput:
+    ExperiencePost:
       type: object
       required:
         - role
@@ -42,6 +42,29 @@ components:
         - startDate
         - endDate
         - description
+      properties:
+        role:
+          type: string
+          description: Role or job title
+        orgName:
+          type: string
+          description: Name of the organization
+        orgLogoUrl:
+          type: string
+          description: URL to the organization's logo
+        startDate:
+          type: string
+          format: date-time
+          description: Start date of the experience
+        endDate:
+          type: string
+          format: date-time
+          description: End date of the experience
+        description:
+          type: string
+          description: Details of the experience
+    ExperiencePut:
+      type: object
       properties:
         role:
           type: string

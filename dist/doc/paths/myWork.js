@@ -17,6 +17,27 @@ export {};
  *                 $ref: '../doc/myWork.yaml#/components/schemas/Work'
  *       '500':
  *         $ref: '../doc/error.yaml#/components/responses/InternalServerError'
+ *   post:
+ *     summary: Create a new work
+ *     tags:
+ *       - My Work
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '../doc/myWork.yaml#/components/schemas/WorkPost'
+ *     responses:
+ *       '201':
+ *         description: Created
+ *       '400':
+ *         $ref: '../doc/error.yaml#/components/responses/BadRequest'
+ *       '401':
+ *         $ref: '../doc/error.yaml#/components/responses/Unauthorized'
+ *       '403':
+ *         $ref: '../doc/error.yaml#/components/responses/Forbidden'
+ *       '500':
+ *         $ref: '../doc/error.yaml#/components/responses/InternalServerError'
  * /my-work/websites:
  *   get:
  *     summary: Get all my websites work
@@ -118,7 +139,7 @@ export {};
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '../doc/myWork.yaml#/components/schemas/WorkInput'
+ *             $ref: '../doc/myWork.yaml#/components/schemas/WorkPut'
  *     responses:
  *       '200':
  *         description: Updated successfully

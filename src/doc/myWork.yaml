@@ -5,6 +5,7 @@ components:
       required:
         - title
         - quickDoc
+        - category
         - photoPrev
         - creationDate
         - doc
@@ -23,6 +24,10 @@ components:
         quickDoc:
           type: string
           description: Short documentation or description
+        category:
+          type: string
+          enum: ["websites", "open-source", "ui-ux", "3d"]
+          description: Category of the work
         photoPrev:
           type: string
           description: URL for the preview photo
@@ -55,11 +60,12 @@ components:
           description: URLs for images
           items:
             type: string
-    WorkInput:
+    WorkPost:
       type: object
       required:
         - title
         - quickDoc
+        - category
         - photoPrev
         - creationDate
         - doc
@@ -75,6 +81,55 @@ components:
         quickDoc:
           type: string
           description: Short documentation or description
+        category:
+          type: string
+          enum: ["websites", "open-source", "ui-ux", "3d"]
+          description: Category of the work
+        photoPrev:
+          type: string
+          description: URL for the preview photo
+        creationDate:
+          type: string
+          description: Creation date of the work
+        doc:
+          type: string
+          description: Full documentation
+        technologies:
+          type: array
+          description: List of skills/technologies used
+          items:
+            $ref: '../doc/skills.yaml#/components/schemas/Skill'
+        contributors:
+          type: array
+          description: List of contributors
+          items:
+            $ref: '../doc/contributors.yaml#/components/schemas/Contributor'
+        src:
+          type: array
+          description: Source links
+          items:
+            type: string
+        numOfImages:
+          type: integer
+          description: Total number of images
+        images:
+          type: array
+          description: URLs for images
+          items:
+            type: string
+    WorkPut:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of the work
+        quickDoc:
+          type: string
+          description: Short documentation or description
+        category:
+          type: string
+          enum: ["websites", "open-source", "ui-ux", "3d"]
+          description: Category of the work
         photoPrev:
           type: string
           description: URL for the preview photo

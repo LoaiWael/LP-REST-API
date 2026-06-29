@@ -32,7 +32,7 @@
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '../doc/experiences.yaml#/components/schemas/ExperienceInput'
+ *             $ref: '../doc/experiences.yaml#/components/schemas/ExperiencePost'
  *     responses:
  *       '201':
  *         description: Created
@@ -81,7 +81,7 @@
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '../doc/experiences.yaml#/components/schemas/ExperienceInput'
+ *             $ref: '../doc/experiences.yaml#/components/schemas/ExperiencePut'
  *     responses:
  *       '200':
  *         description: Updated successfully
