@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { app } from "./app.js";
+import { redisConnect } from "./redis/index.js";
 function startServer() {
     app.listen(process.env.PORT, () => {
         console.log(`Listening at port ${process.env.PORT}`);
@@ -11,6 +12,7 @@ function startServer() {
         .catch((error) => {
         console.error('Error connecting to MongoDB:', error);
     });
+    redisConnect();
 }
 startServer();
 //# sourceMappingURL=server.js.map

@@ -1,4 +1,5 @@
 import express from 'express';
+import 'dotenv/config'
 import helmet from 'helmet';
 import path from 'path';
 import { fileURLToPath } from 'url';
