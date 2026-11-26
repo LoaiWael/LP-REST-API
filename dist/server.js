@@ -1,17 +1,13 @@
 import mongoose from "mongoose";
 import { app } from "./app.js";
-import { redisConnect } from "./redis/index.js";
+import { redisConnect } from "./lib/redis.js";
+import env from "./config/env.js";
+import { databaseConnect } from "./lib/db.js";
 function startServer() {
-    app.listen(process.env.PORT, () => {
-        console.log(`Listening at port ${process.env.PORT}`);
+    app.listen(env.PORT, () => {
+        console.log(`Listening at port ${env.PORT}`);
     });
-    mongoose.connect(process.env.DB_CONNECTION_STRING)
-        .then(() => {
-        console.log('Connected to MongoDB');
-    })
-        .catch((error) => {
-        console.error('Error connecting to MongoDB:', error);
-    });
+    databaseConnect();
     redisConnect();
 }
 startServer();

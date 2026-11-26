@@ -1,4 +1,4 @@
-import client from "./index.js";
+import client from "../lib/redis.js";
 
 export async function setJson(
     key: string,
