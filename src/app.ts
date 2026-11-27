@@ -2,7 +2,7 @@ import express from 'express';
 import helmet from 'helmet';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { myWorkRoutes, experienceRoutes, skillsRoutes, apiDocRoutes } from './routes/index.js';
+import { myWorkRoutes, experienceRoutes, skillsRoutes, apiDocRoutes, healthRoutes } from './routes/index.js';
 import { error, openApivalidator } from './middlewares/index.js';
 import ExpressMongoSanitize from 'express-mongo-sanitize';
 
@@ -30,6 +30,7 @@ process.on('unhandledRejection', exception => {
   process.exit(1)
 });
 
+app.use('/api/health', healthRoutes)
 app.use(openApivalidator);
 app.use('/api/skill', skillsRoutes);
 app.use('/api/experience', experienceRoutes);

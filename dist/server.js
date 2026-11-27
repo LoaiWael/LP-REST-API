@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import { app } from "./app.js";
 import { redisConnect } from "./lib/redis.js";
 import env from "./config/env.js";

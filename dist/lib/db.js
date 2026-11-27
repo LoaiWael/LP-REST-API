@@ -9,4 +9,7 @@ export function databaseConnect() {
         console.error('Error connecting to MongoDB:', error);
     });
 }
+export async function isDbConnected() {
+    return mongoose.connection.readyState === 1;
+}
 //# sourceMappingURL=db.js.map

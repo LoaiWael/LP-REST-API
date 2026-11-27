@@ -28,6 +28,9 @@ export async function redisConnect() {
         setTimeout(redisConnect, 5000);
     }
 }
+export async function isRedisConnected() {
+    return client.isOpen;
+}
 process.on("SIGINT", async () => {
     await client.quit();
     process.exit(0);

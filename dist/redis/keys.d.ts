@@ -1,5 +1,11 @@
 export declare enum DynamicKeys {
-    USER_TODOS = "user-todos"
+    WORK = "work"
 }
-export declare function getUserTodosKey(userId: string): string;
+declare function getWorkDetailsKey(workId: string): string;
+declare function getWorksKey(): string;
+export declare const workKeys: {
+    getWorkDetailsKey: typeof getWorkDetailsKey;
+    getWorksKey: typeof getWorksKey;
+};
+export {};
 //# sourceMappingURL=keys.d.ts.map

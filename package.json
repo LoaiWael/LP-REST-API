@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"tsc -w\" \"nodemon dist/server.js\"",
+    "build": "npm run schemas && npm run copyfiles && tsc",
     "schemas": "npm run schemas:openapi && npm run schemas:types",
     "schemas:openapi": "swagger-jsdoc -d src/doc/definition.yaml src/doc/paths/*.ts \"src/doc/!(definition).yaml\" -o src/schemas/openapi.json",
     "schemas:types": "openapi-typescript src/schemas/openapi.json -o src/schemas/index.d.ts",

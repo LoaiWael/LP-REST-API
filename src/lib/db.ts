@@ -11,3 +11,7 @@ export function databaseConnect() {
             console.error('Error connecting to MongoDB:', error);
         });
 }
+
+export async function isDbConnected(): Promise<boolean> {
+    return mongoose.connection.readyState === 1;
+}

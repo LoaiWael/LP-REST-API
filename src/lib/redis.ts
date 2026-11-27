@@ -35,6 +35,10 @@ export async function redisConnect() {
     }
 }
 
+export async function isRedisConnected(): Promise<boolean> {
+    return client.isOpen;
+}
+
 process.on("SIGINT", async () => {
     await client.quit();
     process.exit(0);
