@@ -3,6 +3,7 @@ components:
     Work:
       type: object
       required:
+        - id
         - title
         - quickDoc
         - category

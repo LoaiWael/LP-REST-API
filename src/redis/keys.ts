@@ -1,11 +1,20 @@
 export enum DynamicKeys {
-    USER_TODOS = "user-todos"
+    WORK = "work"
 }
 
 function generateDynamicKey(key: string, userId: string) {
     return `${key}:${userId}`;
 }
 
-export function getUserTodosKey(userId: string) {
-    return generateDynamicKey(DynamicKeys.USER_TODOS, userId);
+function getWorkDetailsKey(workId: string) {
+    return generateDynamicKey(DynamicKeys.WORK, workId);
+}
+
+function getWorksKey() {
+    return `${DynamicKeys.WORK}`;
+}
+
+export const workKeys = {
+    getWorkDetailsKey,
+    getWorksKey
 }

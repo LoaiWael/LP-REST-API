@@ -953,7 +953,7 @@ export interface components {
         };
         Work: {
             /** @description Unique identifier for the work */
-            id?: string;
+            id: string;
             /** @description Title of the work */
             title: string;
             /** @description Short documentation or description */
@@ -1062,7 +1062,7 @@ export interface components {
         };
         "schemas-Work": {
             /** @description Unique identifier for the work */
-            id?: string;
+            id: string;
             /** @description Title of the work */
             title: string;
             /** @description Short documentation or description */

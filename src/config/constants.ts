@@ -1,0 +1,1 @@
+export const REDIS_CACHE_DURATION_MILLIS = 60 * 60 * 1000;

@@ -1,16 +1,15 @@
 import client from "../lib/redis.js";
 
-export async function setJson(
+export async function setJson<T>(
     key: string,
-    value: Record<string, unknown>,
-    expireAt: Date | null = null
+    value: T,
+    expireAtMS: number | null = null
 ) {
     const json = JSON.stringify(value);
 
     // time to live
-    if (expireAt) {
-        const ttlMili = expireAt.getTime() - Date.now();
-        return client.set(key, json, { expiration: { type: "EX", value: ttlMili } })
+    if (expireAtMS) {
+        return client.set(key, json, { expiration: { type: "EX", value: expireAtMS } })
     }
     else {
         return client.set(key, json);
