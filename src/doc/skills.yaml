@@ -22,9 +22,13 @@ components:
     SkillPost:
       type: object
       required:
+        - id
         - title
         - icon
       properties:
+        id:
+          type: string
+          description: Unique identifier for the skill
         title:
           type: string
           description: Name of the skill
@@ -37,6 +41,9 @@ components:
     SkillPut:
       type: object
       properties:
+        id:
+          type: string
+          description: Unique identifier for the skill
         title:
           type: string
           description: Name of the skill

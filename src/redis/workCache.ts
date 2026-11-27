@@ -28,7 +28,7 @@ async function invalidateWorkCache(id: string) {
     const workDetailsKey = workKeys.getWorkDetailsKey(id);
     const workKey = workKeys.getWorksKey();
 
-    return Promise.all([
+    return await Promise.all([
         client.del(workDetailsKey),
         client.del(workKey)
     ])

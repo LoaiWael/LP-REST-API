@@ -1045,6 +1045,8 @@ export interface components {
             techUsage?: string;
         };
         SkillPost: {
+            /** @description Unique identifier for the skill */
+            id: string;
             /** @description Name of the skill */
             title: string;
             /** @description Icon URL or identifier for the skill */
@@ -1053,6 +1055,8 @@ export interface components {
             techUsage?: string;
         };
         SkillPut: {
+            /** @description Unique identifier for the skill */
+            id?: string;
             /** @description Name of the skill */
             title?: string;
             /** @description Icon URL or identifier for the skill */
